@@ -1,4 +1,10 @@
 $(document).ready(function () {
+
+    //variable for current time
+    var currentTime = moment();
+    //displays current time on the jumbotron
+    $('#current-time').html("The current time is: " + moment(currentTime).format("hh:mm"));
+
     // Initialize Firebase
     var config = {
         apiKey: "AIzaSyCM0pBIJV0UIyJfD0g9Oz6MSFiXTvZNJA8",
@@ -9,6 +15,7 @@ $(document).ready(function () {
         messagingSenderId: "169090128899"
     };
     firebase.initializeApp(config);
+
 
     //References firebase
     var database = firebase.database();
@@ -52,16 +59,11 @@ $(document).ready(function () {
         var destination = childSnapshot.val().destination;
         var frequency = childSnapshot.val().frequency;
         var time = childSnapshot.val().time;
-        var deleteTrain = "<button class='delete-button' id='deleteTrain' value='Delete'>Delete?</button>"
+        var deleteTrain = "<button class='delete-button' id='deleteTrain' value='Delete' onclick='deleteRow(this)'>Delete?</button>"
 
         //Thank goodness we had this in our class activities!
         //Otherwise, I would be so lost. Anyway, I am converting the time of the train back a year so its before our current time
         var trainTimeConverted = moment(time, "hh:mm").subtract(1, "years");
-
-        //variable for current time
-        var currentTime = moment();
-        //displays current time on the jumbotron
-        $('#current-time').html("The current time is: " + moment(currentTime).format("hh:mm"));
 
         //finds out the time difference between when the train time and now
         var trainTimeDifference = moment().diff(moment(trainTimeConverted), "minutes");
@@ -79,13 +81,17 @@ $(document).ready(function () {
 
         //Adding back to our table
         $('#train-table').prepend("<tr><td>" + name + "</td><td>" + destination + "</td><td>" + frequency + "</td><td>" + nextTrainComes + "</td><td>" + minutesToNextTrain + "</td><td>" + deleteTrain + "</td></tr>");
+
+        $("#deleteTrain").on("click", function () {
+
+            $(this).closest("tr").remove();
+            var survey = database.ref(path + '/' + path);
+            survey.child(key).remove();
+
+        });
+
     })
 
-        $("#delete-train").on("click", function() {
 
-            var deleteThis = $(this).attr("id");
-            database.ref().child(deleteThis).remove();
-            location.reload();
-        });
-        });
- 
+
+});

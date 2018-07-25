@@ -19,8 +19,11 @@ body {
       box-shadow: 0 0 2.5px #fff, 0 0 5px #fff, 0 0 10px #f6ec70, 0 0 15px #f6ec70, 0 0 20px #f6ec70, 0 0 27.5px #f6ec70, 0 0 37.5px #f6ec70;
     margin-bottom: 50px;
     }
-#deleteTrain {
+button {
     background-color: #f6ec70;
+}
+button:hover{
+    background-color: #ff0080;
 }
   #wrapper {
       margin-left: 250px;
