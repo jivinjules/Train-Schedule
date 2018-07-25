@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Train-Schedule</title>
+
+    <meta charset="utf-8" />
+    <!--Viewport for media queries-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Linking Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+        crossorigin="anonymous">
+    <!--Linking CSS reset-->
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <!--Linking CSS Stylesheet-->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!--Linking Googlefonts-->
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata|Monoton" rel="stylesheet">
+    <!--Linking jquery-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!--Linking to Firebase-->
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+     <!--Linking moment.js-->
+     <script src="https://momentjs.com/downloads/moment.js"></script>
+</head>
+
+<body>
+    <!--Jumbotron heading-->
+    <div class="jumbotron">
+        <h1 class="display-4">Train Schedule</h1>
+        <p class="lead">"Sometimes that light at the end of the tunnel is a train."</p>
+        <br>
+        <div id="current-time"></div>
+    </div>
+
+    <!--wrapper contains the Current Train Schedule and the "Add Train"-->
+    <div id="wrapper">
+        <!--Begin current Train Schedule-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Current Train Schedule</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-hover table-responsive" id="train-schedule">
+                            <thead>
+                                <tr>
+                                    <th>Train Name</th>
+                                    <th>Destination</th>
+                                    <th>Frequency (min)</th>
+                                    <th>Next Arrival</th>
+                                    <th>Minutes Away</th>
+                                    <th>Delete Train</th>
+                                </tr>
+                            </thead>
+                            <tbody id="train-table">
+                                <tr></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Add Train</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="train-name">Train Name</label>
+                                <input type="text" class="form-control" id="name-input" placeholder="Enter Train Here">
+                            </div>
+                            <div class="form-group">
+                                <label for="destination">Destination </label>
+                                <input type="text" class="form-control" id="destination-input" placeholder="Enter Location Here">
+                            </div>
+                            <div class="form-group">
+                                <label class="nextTrain" for="train-time">First Train Time</label>
+                                <label class="milTime">&nbsp;(HH:mm - Military)</label>
+                                <input type="" class="form-control" id="time-input" placeholder="00:00">
+                            </div>
+                            <div class="form-group">
+                                <label for="frequency">Frequency (mins)</label>
+                                <input type="text" class="form-control" id="frequency-input" placeholder="100">
+                            </div>
+
+                            <button type="submit" class="btn btn-default" id="submit-btn">Submit</button>
+                            <br>
+                            <br>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Begin curret "Add Train" form-->
+        <script type="text/javascript" src="assets/javascript/game.js"></script>
+</body>
+<footer id="sticky">
+    Julie Hodges &copy 2018
+</footer>
+
+</html>
