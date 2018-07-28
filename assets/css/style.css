@@ -86,11 +86,16 @@ button:hover{
   }
 
   /*Media Queries for ipad and iphone screens*/
-  @media screen and (max-width:768px) {
-   
-}
-
+  
 
 @media screen and (max-width:640px) {
+.jumbotron {
+    margin-right: 10px;
+    margin-left: 10px;
+}
 
+#wrapper {
+    margin-right: 25px;
+    margin-left: 25px;
+}
 }
