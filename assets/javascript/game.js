@@ -59,8 +59,9 @@ $(document).ready(function () {
         var destination = childSnapshot.val().destination;
         var frequency = childSnapshot.val().frequency;
         var time = childSnapshot.val().time;
-        var deleteTrain = "<button class='delete-button' id='deleteTrain' value='Delete' onclick='deleteRow(this)'>Delete?</button>"
-
+        var key =  childSnapshot.key;
+        var deleteTrain = "<button class='arrival btn btn-danger btn-xs' data-key='" + key + "'>Delete</button>"
+        
         //Thank goodness we had this in our class activities!
         //Otherwise, I would be so lost. Anyway, I am converting the time of the train back a year so its before our current time
         var trainTimeConverted = moment(time, "hh:mm").subtract(1, "years");
@@ -82,11 +83,12 @@ $(document).ready(function () {
         //Adding back to our table
         $('#train-table').prepend("<tr><td>" + name + "</td><td>" + destination + "</td><td>" + frequency + "</td><td>" + nextTrainComes + "</td><td>" + minutesToNextTrain + "</td><td>" + deleteTrain + "</td></tr>");
 
-        $("#deleteTrain").on("click", function () {
-
-            $(this).closest("tr").remove();
-            var survey = database.ref(path + '/' + path);
-            survey.child(key).remove();
+        $(document).on("click", ".arrival", function () {
+            keyref = $(this).attr("data-key")
+            // $(this).closest("tr").remove();
+            // var survey = database.ref(path + '/' + path);
+            database.ref().child(keyref).remove();
+            window.location.reload();
 
         });
 
